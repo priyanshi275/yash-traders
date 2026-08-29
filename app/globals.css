@@ -1,26 +1,182 @@
 @import "tailwindcss";
 
+/* ========================================
+   Theme
+======================================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fafafa;
+  --foreground: #18181b;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ========================================
+   Base
+======================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+section {
+  scroll-margin-top: 90px;
+}
+
+/* ========================================
+   Typography
+======================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
+p {
+  line-height: 1.75;
+}
+
+a {
+  transition: all 0.25s ease;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ========================================
+   Selection
+======================================== */
+
+::selection {
+  background: #ea580c;
+  color: white;
+}
+
+/* ========================================
+   Scrollbar
+======================================== */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f4f4f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ea580c;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c2410c;
+}
+
+/* ========================================
+   Inputs
+======================================== */
+
+input,
+select,
+textarea {
+  color: #18181b;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #71717a;
+}
+
+/* ========================================
+   Card Hover
+======================================== */
+
+.card-hover {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* ========================================
+   Button Hover
+======================================== */
+
+.button-hover {
+  transition: all 0.25s ease;
+}
+
+.button-hover:hover {
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   Utilities
+======================================== */
+
+.text-primary {
+  color: #18181b;
+}
+
+.text-secondary {
+  color: #3f3f46;
+}
+
+.text-muted {
+  color: #71717a;
+}
+
+.orange-gradient {
+  background: linear-gradient(
+    135deg,
+    #ea580c,
+    #fb923c
+  );
+}
+
+.shadow-soft {
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+}
+
+.border-soft {
+  border: 1px solid #e4e4e7;
+}
+
+/* ========================================
+   Focus
+======================================== */
+
+:focus-visible {
+  outline: 2px solid #ea580c;
+  outline-offset: 2px;
 }
