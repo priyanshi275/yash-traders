@@ -1,3 +1,21 @@
+import { ArrowRight } from "lucide-react";
+
+import Reveal from "../common/Reveal";
+
+const categoryTags = [
+  "Hardware",
+  "Plumbing",
+  "Electrical",
+  "Paints",
+  "Sanitaryware",
+];
+
+const stats = [
+  { number: "17+", label: "Years of Trust" },
+  { number: "50+", label: "Premium Brands" },
+  { number: "1000+", label: "Happy Customers" },
+];
+
 export default function Hero() {
   return (
     <section
@@ -7,141 +25,93 @@ export default function Hero() {
         backgroundImage: "url('/image/hero/hero.jpg')",
       }}
     >
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/60"></div>
+      {/* Single, considered overlay for legibility — content is anchored
+          bottom-left, so the gradient is heaviest there and lightest
+          toward the top-right where the photo can breathe. */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/20" />
 
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-transparent"></div>
+      {/* Content — anchored toward the bottom, editorial poster composition
+          rather than a vertically-centered landing-page block. */}
+      <div className="relative z-10 max-w-7xl mx-auto min-h-[680px] md:min-h-screen flex items-end px-5 sm:px-6 lg:px-8 pt-28 pb-12 md:pb-16">
 
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto min-h-[680px] md:min-h-screen flex items-center px-5 sm:px-6 lg:px-8 pt-24 pb-14 md:pt-28 md:pb-20">
+        <div className="max-w-4xl w-full">
 
-        <div className="max-w-3xl w-full">
+          {/* Kicker — states the business type and how long established */}
+          <Reveal>
+            <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-orange-300">
+              Trusted Building Solutions Partner &middot; Since 2009
+            </p>
+          </Reveal>
 
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-orange-400/40 bg-orange-500/20 backdrop-blur-md px-4 py-1.5 md:px-5 md:py-2 text-xs md:text-sm font-semibold text-orange-200">
-            🏆 Trusted Building Solutions Partner • Since 2009
-          </div>
+          {/* Wordmark — bold and memorable, but grounded immediately
+              below by the tagline so it reads as identity, not decoration */}
+          <Reveal delay={0.08}>
+            <h1 className="mt-3 md:mt-4 text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold uppercase leading-[0.95] tracking-tight text-white">
+              Yash Traders
+            </h1>
+          </Reveal>
 
-          {/* Heading */}
-          <h1 className="mt-6 md:mt-8 text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold leading-[1.08] tracking-tight text-white">
+          <Reveal delay={0.16}>
+            <p className="mt-4 md:mt-6 max-w-xl text-base sm:text-lg md:text-xl leading-7 md:leading-8 text-gray-200">
+              From premium hardware, plumbing and electrical supplies to
+              sanitaryware, paints, power tools and construction essentials —
+              your one-stop building solutions partner in Ghaziabad.
+            </p>
+          </Reveal>
 
-            Everything You Need
+          {/* CTA hierarchy: one dominant primary action, one quiet secondary link */}
+          <Reveal delay={0.24}>
+            <div className="mt-7 md:mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
 
-            <span className="block mt-2 md:mt-4 text-orange-400">
-
-              Your One-Stop
-
-              <br />
-
-              Building Solution
-
-            </span>
-
-          </h1>
-
-          {/* Description */}
-          <p className="mt-5 md:mt-8 max-w-2xl text-base sm:text-lg md:text-xl leading-7 md:leading-8 text-gray-200">
-
-            From premium hardware, plumbing and electrical supplies to
-            sanitaryware, paints, power tools and construction essentials,
-            Yash Traders has been your trusted one-stop building solutions
-            partner in Ghaziabad since 2009.
-
-          </p>
-
-          {/* Category Pills */}
-          <div className="mt-6 md:mt-8 flex flex-wrap gap-2 md:gap-3">
-
-            {[
-              "Hardware",
-              "Plumbing",
-              "Electrical",
-              "Paints",
-              "Sanitaryware",
-            ].map((item) => (
-
-              <span
-                key={item}
-                className="rounded-full border border-white/20 bg-white/10 backdrop-blur-sm px-3.5 py-1.5 md:px-5 md:py-2 text-xs md:text-sm font-medium text-white"
+              <a
+                href="#products"
+                className="inline-flex items-center gap-2 rounded-md bg-orange-600 px-7 py-3.5 md:px-9 md:py-4 font-bold text-white transition-colors duration-200 hover:bg-orange-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-300"
               >
-                {item}
-              </span>
+                Explore Products
+                <ArrowRight size={19} />
+              </a>
 
-            ))}
-
-          </div>
-
-          {/* Buttons */}
-          <div className="mt-7 md:mt-10 flex flex-col sm:flex-row gap-3 md:gap-5">
-
-            <a
-              href="#products"
-              className="rounded-xl bg-orange-500 hover:bg-orange-600 px-7 py-3.5 md:px-8 md:py-4 text-center font-semibold text-white shadow-xl transition-all duration-300 hover:scale-105"
-            >
-              Explore Products
-            </a>
-
-            <a
-              href="#contact"
-              className="rounded-xl border border-white bg-white/10 backdrop-blur-sm px-7 py-3.5 md:px-8 md:py-4 text-center font-semibold text-white transition-all duration-300 hover:bg-white hover:text-black"
-            >
-              Contact Us
-            </a>
-
-          </div>
-
-          {/* Stats */}
-          <div className="mt-9 md:mt-16 grid grid-cols-3 gap-3 sm:gap-6 max-w-xl">
-
-            <div>
-
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-orange-400">
-                17+
-              </h2>
-
-              <p className="mt-1 md:mt-2 text-xs sm:text-sm md:text-base text-gray-300">
-                Years of Trust
-              </p>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-1.5 font-semibold text-white/90 underline-offset-4 transition-colors duration-200 hover:text-white hover:underline"
+              >
+                Contact Us
+                <ArrowRight size={16} />
+              </a>
 
             </div>
+          </Reveal>
 
-            <div>
+          {/* Category tags — quiet inline list, not competing pill badges */}
+          <Reveal delay={0.32}>
+            <p className="mt-6 md:mt-8 text-sm text-white/60">
+              {categoryTags.map((item, index) => (
+                <span key={item}>
+                  {item}
+                  {index < categoryTags.length - 1 && (
+                    <span className="mx-2.5 text-white/30">&middot;</span>
+                  )}
+                </span>
+              ))}
+            </p>
+          </Reveal>
 
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-orange-400">
-                50+
-              </h2>
-
-              <p className="mt-1 md:mt-2 text-xs sm:text-sm md:text-base text-gray-300">
-                Premium Brands
-              </p>
-
+          {/* Stats — a slim, quiet rail so it supports rather than
+              competes with the wordmark and CTA above it */}
+          <Reveal delay={0.4}>
+            <div className="mt-7 md:mt-9 pt-6 md:pt-7 border-t border-white/15 flex flex-wrap gap-x-8 gap-y-3">
+              {stats.map((item) => (
+                <div key={item.label} className="flex items-baseline gap-2">
+                  <span className="text-lg md:text-xl font-bold text-orange-400">
+                    {item.number}
+                  </span>
+                  <span className="text-xs md:text-sm text-white/60">
+                    {item.label}
+                  </span>
+                </div>
+              ))}
             </div>
-
-            <div>
-
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-orange-400">
-                1000+
-              </h2>
-
-              <p className="mt-1 md:mt-2 text-xs sm:text-sm md:text-base text-gray-300">
-                Happy Customers
-              </p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="hidden md:block absolute bottom-10 left-1/2 -translate-x-1/2 z-20">
-
-        <div className="w-7 h-12 rounded-full border-2 border-white flex justify-center">
-
-          <div className="w-1.5 h-3 rounded-full bg-white mt-2 animate-bounce"></div>
+          </Reveal>
 
         </div>
 

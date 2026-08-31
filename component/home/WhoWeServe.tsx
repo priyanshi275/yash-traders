@@ -1,4 +1,4 @@
-import SectionTitle from "../ui/SectionTitle";
+import Reveal from "../common/Reveal";
 import {
   Compass,
   Building2,
@@ -49,58 +49,65 @@ const customers = [
 
 export default function WhoWeServe() {
   return (
-    <section className="bg-white py-12 md:py-20">
+    <section className="bg-white py-16 md:py-28">
       <div className="max-w-7xl mx-auto px-5 sm:px-6">
 
-        {/* Section Header */}
+        {/* Bespoke, left-aligned section intro */}
 
-        <SectionTitle
-          title="Who We Serve"
-          subtitle="Trusted by professionals, businesses and customers across Ghaziabad for quality products and dependable service."
-        />
+        <div className="max-w-2xl">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-900">
+            Who We Serve
+          </h2>
 
-        {/* Customer Cards */}
+          <p className="mt-4 text-base md:text-lg leading-7 text-zinc-600">
+            Trusted by professionals, businesses and customers across
+            Ghaziabad for quality products and dependable service.
+          </p>
+        </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mt-10 md:mt-14">
+        {/* Editorial index — large numerals, minimal decoration,
+            reads as a directory rather than six identical cards */}
 
-          {customers.map((customer) => {
+        <div className="mt-10 md:mt-16 grid sm:grid-cols-2 border-t border-zinc-200">
+
+          {customers.map((customer, index) => {
             const Icon = customer.icon;
+            const isRightCol = index % 2 === 1;
+            const isLastRow = index >= customers.length - 2;
+            const isLastItem = index === customers.length - 1;
 
             return (
-              <div
+              <Reveal
                 key={customer.title}
-                className="group bg-white rounded-2xl md:rounded-3xl border border-gray-100 shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 p-5 md:p-8"
+                delay={Math.min(index * 0.07, 0.3)}
               >
+                <div
+                  className={`flex items-start gap-4 md:gap-6 py-7 md:py-9 border-zinc-200 ${
+                    isRightCol ? "sm:pl-8 md:pl-10 sm:border-l" : "sm:pr-8 md:pr-10"
+                  } ${!isLastItem ? "border-b" : ""} ${
+                    isLastRow ? "sm:border-b-0" : ""
+                  }`}
+                >
 
-                {/* Icon */}
+                  <span className="text-4xl md:text-6xl font-extrabold text-zinc-200 leading-none shrink-0 w-14 md:w-20">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
 
-                <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-orange-100 flex items-center justify-center group-hover:bg-orange-500 transition">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <Icon size={19} className="text-orange-500" />
+                      <h3 className="text-lg md:text-xl font-bold text-zinc-900">
+                        {customer.title}
+                      </h3>
+                    </div>
 
-                  <Icon
-                    size={26}
-                    className="md:hidden text-orange-600 group-hover:text-white transition"
-                  />
-
-                  <Icon
-                    size={32}
-                    className="hidden md:block text-orange-600 group-hover:text-white transition"
-                  />
+                    <p className="mt-2 text-sm md:text-base leading-6 md:leading-7 text-zinc-600 max-w-sm">
+                      {customer.description}
+                    </p>
+                  </div>
 
                 </div>
-
-                {/* Title */}
-
-                <h3 className="mt-4 md:mt-6 text-xl md:text-2xl font-bold text-gray-900">
-                  {customer.title}
-                </h3>
-
-                {/* Description */}
-
-                <p className="mt-2 md:mt-4 text-sm md:text-base text-gray-600 leading-6 md:leading-7">
-                  {customer.description}
-                </p>
-
-              </div>
+              </Reveal>
             );
           })}
 

@@ -10,7 +10,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-import SectionHeader from "../common/SectionHeader";
+import Reveal from "../common/Reveal";
 
 const features = [
   {
@@ -65,129 +65,97 @@ const features = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-14 md:py-24">
+    <section className="bg-zinc-900 py-16 md:py-28">
       <div className="max-w-7xl mx-auto px-5 sm:px-6">
 
-        {/* Section Header */}
+        {/* Single flowing intro — combines what were previously two
+            separate headings/badges into one coherent statement */}
 
-        <SectionHeader
-          title="Why Choose Yash Traders?"
-          subtitle="Trusted by builders, contractors, architects and businesses for genuine products, competitive pricing and dependable service."
-        />
+        <div className="max-w-3xl">
 
-        {/* =========================
-            FEATURES
-        ========================= */}
+          <span className="block text-[11px] md:text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
+            Trusted Across Ghaziabad
+          </span>
 
-        <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-3 md:gap-8 mt-10 md:mt-16">
+          <span className="mt-2 block text-xs md:text-sm font-semibold uppercase tracking-widest text-orange-400">
+            Why Choose Yash Traders?
+          </span>
 
-          {features.map((feature) => {
-            const Icon = feature.icon;
+          <h2 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight text-white">
+            Building Long-Term Trust Through Quality Products &amp; Honest Service
+          </h2>
 
-            return (
-              <div
-                key={feature.title}
-                className="group rounded-2xl md:rounded-3xl bg-white border border-zinc-200 p-4 md:p-8 shadow-sm hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
-              >
-
-                {/* Icon */}
-
-                <div className="flex h-11 w-11 md:h-16 md:w-16 items-center justify-center rounded-xl md:rounded-2xl bg-orange-100 group-hover:bg-orange-600 transition-colors">
-
-                  <Icon
-                    size={23}
-                    className="text-orange-600 group-hover:text-white transition-colors md:w-[30px] md:h-[30px]"
-                  />
-
-                </div>
-
-                {/* Title */}
-
-                <h3 className="mt-4 md:mt-7 text-lg md:text-2xl font-bold text-zinc-900">
-
-                  {feature.title}
-
-                </h3>
-
-                {/* Description */}
-
-                <p className="mt-2 md:mt-4 text-sm md:text-base leading-6 md:leading-8 text-zinc-700">
-
-                  {feature.description}
-
-                </p>
-
-              </div>
-            );
-          })}
+          <p className="mt-5 text-base md:text-lg leading-7 md:leading-8 text-zinc-400">
+            Trusted by builders, contractors, architects and businesses for
+            genuine products, competitive pricing and dependable service.
+          </p>
 
         </div>
 
+        {/* Features — a single unified list, not eight separate cards */}
 
-        {/* =========================
-            BOTTOM CTA
-        ========================= */}
+        <Reveal delay={0.1}>
+          <div className="mt-10 md:mt-16 pt-10 md:pt-14 border-t border-white/10 grid sm:grid-cols-2 gap-x-10 md:gap-x-16 gap-y-8 md:gap-y-10">
 
-        <div className="mt-10 md:mt-20 rounded-2xl md:rounded-[32px] overflow-hidden bg-gradient-to-r from-zinc-900 via-zinc-800 to-zinc-900">
+            {features.map((feature) => {
+              const Icon = feature.icon;
 
-          <div className="grid lg:grid-cols-2 gap-7 md:gap-10 items-center p-5 md:p-12">
+              return (
+                <div key={feature.title} className="flex items-start gap-4">
+                  <Icon
+                    size={22}
+                    className="mt-0.5 shrink-0 text-orange-400"
+                  />
 
-            {/* CTA Content */}
+                  <div>
+                    <h3 className="text-base md:text-lg font-bold text-white">
+                      {feature.title}
+                    </h3>
 
-            <div>
+                    <p className="mt-1.5 text-sm md:text-base leading-6 md:leading-7 text-zinc-400">
+                      {feature.description}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
 
-              <span className="inline-flex items-center gap-2 rounded-full bg-orange-500/20 px-4 py-1.5 md:px-5 md:py-2 text-xs md:text-sm font-semibold text-orange-300">
+          </div>
+        </Reveal>
 
-                ⭐ Trusted Across Ghaziabad
+        {/* Closing statement + CTA — part of the same composition */}
 
-              </span>
+        <Reveal delay={0.2}>
+          <div className="mt-12 md:mt-16 pt-10 md:pt-12 border-t border-white/10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 md:gap-8">
 
-              <h2 className="mt-4 md:mt-6 text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight">
+            <p className="text-base md:text-lg leading-7 text-zinc-300 max-w-xl">
+              Whether you&apos;re constructing a home, renovating a property
+              or managing a commercial project, Yash Traders is your
+              one-stop destination for quality building materials from
+              India&apos;s most trusted brands.
+            </p>
 
-                Building Long-Term Trust Through
-                Quality Products & Honest Service
-
-              </h2>
-
-              <p className="mt-3 md:mt-6 text-sm md:text-lg leading-6 md:leading-8 text-zinc-300">
-
-                Whether you're constructing a home,
-                renovating a property or managing a
-                commercial project, Yash Traders is your
-                one-stop destination for quality building
-                materials from India's most trusted brands.
-
-              </p>
-
-            </div>
-
-
-            {/* CTA Buttons */}
-
-            <div className="flex flex-col sm:flex-row lg:justify-end gap-3 md:gap-5">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 shrink-0">
 
               <a
                 href="#products"
-                className="rounded-xl bg-orange-600 hover:bg-orange-700 px-6 py-3 md:px-8 md:py-4 text-center font-semibold text-white transition"
+                className="rounded-md bg-orange-600 px-6 py-3 md:px-8 md:py-3.5 text-center font-semibold text-white transition-colors duration-200 hover:bg-orange-700"
               >
                 Browse Products
               </a>
 
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white px-6 py-3 md:px-8 md:py-4 font-semibold text-white hover:bg-white hover:text-zinc-900 transition"
+                className="inline-flex items-center justify-center gap-2 rounded-md border border-white/25 px-6 py-3 md:px-8 md:py-3.5 font-semibold text-white transition-colors duration-200 hover:bg-white hover:text-zinc-900"
               >
                 Contact Us
-
                 <ArrowRight size={18} />
-
               </a>
 
             </div>
 
           </div>
-
-        </div>
+        </Reveal>
 
       </div>
     </section>

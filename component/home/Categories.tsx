@@ -1,15 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight,
-  Hammer,
-  Wrench,
-  Zap,
-  PaintBucket,
-  Droplets,
-  Package,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
-import SectionHeader from "../common/SectionHeader";
+import Reveal from "../common/Reveal";
 
 const categories = [
   {
@@ -17,136 +10,174 @@ const categories = [
     slug: "hardware",
     description:
       "Locks, door fittings, kitchen and wardrobe hardware.",
-    icon: Hammer,
-    color: "bg-orange-100 text-orange-600",
   },
   {
     title: "Bathroom Fittings",
     slug: "bathroom-fittings",
     description:
       "Pipes, fittings, bathroom fixtures and essential products.",
-    icon: Droplets,
-    color: "bg-cyan-100 text-cyan-600",
   },
   {
     title: "Adhesives",
     slug: "adhesives",
     description:
       "Adhesives, bonding products and construction solutions.",
-    icon: Package,
-    color: "bg-rose-100 text-rose-600",
   },
   {
     title: "Tools & Machinery",
     slug: "tools",
     description:
       "Hand tools and power tools for construction and workshop use.",
-    icon: Wrench,
-    color: "bg-blue-100 text-blue-600",
   },
   {
     title: "Electrical",
     slug: "electrical",
     description:
       "Switches, sockets, lighting, wires and electrical protection.",
-    icon: Zap,
-    color: "bg-yellow-100 text-yellow-600",
   },
   {
     title: "Paints",
     slug: "paints",
     description:
       "Enamel, wall paints, emulsion, distemper and painting essentials.",
-    icon: PaintBucket,
-    color: "bg-purple-100 text-purple-600",
   },
 ];
 
+/*
+  Explicit slug -> verified image mapping.
+  Deliberately NOT derived automatically from the slug string, since the
+  actual filenames on disk (public/image/hero/categories/) don't all match
+  the category slugs 1:1 — e.g. "bathroom-fittings" maps to the existing
+  "bathroom-accessories.jpg" file, not a "bathroom-fittings.jpg" file,
+  which does not exist.
+*/
+const categoryImages: Record<string, string> = {
+  hardware: "/image/hero/categories/hardware.jpg",
+  "bathroom-fittings": "/image/hero/categories/bathroom-accessories.jpg",
+  adhesives: "/image/hero/categories/adhesives.jpg",
+  tools: "/image/hero/categories/tools.jpg",
+  electrical: "/image/hero/categories/electrical.jpg",
+  paints: "/image/hero/categories/paints.jpg",
+};
+
 export default function Categories() {
+  const [featured, ...rest] = categories;
+  const featuredImage = categoryImages[featured.slug];
+
   return (
-    <section id = "products" className="bg-white py-12 md:py-20">
+    <section id = "products" className="bg-white py-16 md:py-28">
       <div className="max-w-7xl mx-auto px-5 sm:px-6">
 
-        {/* Section Header */}
+        {/* Bespoke, left-aligned section intro (not the shared centered header) */}
 
-        <SectionHeader
-          title="Our Product Categories"
-          subtitle="Explore our range of quality products for homes, commercial projects and construction requirements."
-        />
+        <div className="max-w-2xl">
+          <span className="text-xs md:text-sm font-semibold uppercase tracking-widest text-orange-600">
+            Our Product Range
+          </span>
 
-        {/* Categories */}
+          <h2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-900">
+            Our Product Categories
+          </h2>
 
-        <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-8 mt-10 md:mt-14">
+          <p className="mt-4 text-base md:text-lg leading-7 text-zinc-600">
+            Explore our range of quality products for homes, commercial
+            projects and construction requirements.
+          </p>
+        </div>
 
-          {categories.map((category) => {
-            const Icon = category.icon;
+        {/* Showroom-style layout: Hardware is the visual anchor (our
+            founding, primary line) shown larger; the remaining five
+            categories are equally available and simply shown at a
+            more compact size alongside it. */}
 
-            return (
-              <Link
-                key={category.slug}
-                href={`/products/${category.slug}`}
-                className="group bg-white rounded-2xl md:rounded-3xl border border-zinc-200 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 p-5 md:p-8"
-              >
+        <div className="mt-10 md:mt-14 grid grid-cols-1 lg:grid-cols-5 gap-4 md:gap-6">
 
-                {/* Top Row */}
+          {/* Featured: Hardware */}
 
-                <div className="flex items-center justify-between">
+          <Reveal>
+            <Link
+              href={`/products/${featured.slug}`}
+              className="group relative flex flex-col justify-end overflow-hidden rounded-lg border border-zinc-200 h-72 sm:h-80 md:h-[380px] lg:h-full lg:min-h-[460px] lg:col-span-3"
+            >
 
-                  <div
-                    className={`w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl flex items-center justify-center ${category.color}`}
-                  >
-                    <Icon
-                      size={26}
-                      className="md:hidden"
-                    />
+              {featuredImage && (
+                <Image
+                  src={featuredImage}
+                  alt={`${featured.title} at Yash Traders`}
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 60vw"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                />
+              )}
 
-                    <Icon
-                      size={34}
-                      className="hidden md:block"
-                    />
-                  </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
 
-                  {/* Arrow */}
-
-                  <div className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-500 group-hover:bg-orange-500 group-hover:text-white transition">
-
-                    <ArrowRight
-                      size={17}
-                      className="group-hover:translate-x-0.5 transition-transform"
-                    />
-
-                  </div>
-
-                </div>
-
-                {/* Title */}
-
-                <h3 className="mt-5 md:mt-8 text-xl md:text-2xl font-bold text-zinc-900 group-hover:text-orange-600 transition-colors">
-                  {category.title}
+              <div className="relative z-10 p-6 md:p-9">
+                <h3 className="text-2xl md:text-3xl font-extrabold text-white">
+                  {featured.title}
                 </h3>
 
-                {/* Description */}
-
-                <p className="mt-2 md:mt-4 text-sm md:text-base text-zinc-600 leading-6 md:leading-7">
-                  {category.description}
+                <p className="mt-2 max-w-md text-sm md:text-base leading-6 text-white/80">
+                  {featured.description}
                 </p>
 
-                {/* Explore */}
-
-                <div className="mt-5 md:mt-8 flex items-center font-semibold text-sm md:text-base text-orange-600 group-hover:text-orange-700">
-
+                <span className="mt-4 inline-flex items-center gap-2 text-sm md:text-base font-semibold text-white">
                   Explore Category
-
                   <ArrowRight
                     size={17}
-                    className="ml-2 group-hover:translate-x-1 transition-transform"
+                    className="transition-transform duration-300 group-hover:translate-x-1"
                   />
+                </span>
+              </div>
 
-                </div>
+            </Link>
+          </Reveal>
 
-              </Link>
-            );
-          })}
+          {/* Remaining categories — equally in-stock, shown at a
+              supporting scale */}
+
+          <div className="lg:col-span-2 grid grid-cols-2 gap-4 md:gap-6">
+
+            {rest.map((category, index) => {
+              const imageSrc = categoryImages[category.slug];
+              const isLastOdd =
+                index === rest.length - 1 && rest.length % 2 === 1;
+
+              return (
+                <Reveal
+                  key={category.slug}
+                  delay={Math.min(0.08 + index * 0.06, 0.3)}
+                >
+                  <Link
+                    href={`/products/${category.slug}`}
+                    className={`group relative flex flex-col justify-end overflow-hidden rounded-lg border border-zinc-200 h-36 sm:h-40 md:h-44 ${
+                      isLastOdd ? "col-span-2" : ""
+                    }`}
+                  >
+
+                    {imageSrc && (
+                      <Image
+                        src={imageSrc}
+                        alt={`${category.title} at Yash Traders`}
+                        fill
+                        sizes="(max-width: 640px) 50vw, 20vw"
+                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                      />
+                    )}
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+
+                    <span className="relative z-10 p-3 md:p-4 text-sm md:text-base font-bold text-white">
+                      {category.title}
+                    </span>
+
+                  </Link>
+                </Reveal>
+              );
+            })}
+
+          </div>
 
         </div>
 
