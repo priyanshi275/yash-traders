@@ -180,3 +180,10 @@ textarea::placeholder {
   outline: 2px solid #ea580c;
   outline-offset: 2px;
 }
+/* Mobile/tablet: keep Reveal content visible regardless of animation state */
+@media (max-width: 1023px) {
+  .reveal-animate {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

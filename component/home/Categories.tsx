@@ -94,10 +94,10 @@ export default function Categories() {
 
           {/* Featured: Hardware */}
 
-          <Reveal>
+          <Reveal className="lg:col-span-3">
             <Link
               href={`/products/${featured.slug}`}
-              className="group relative flex flex-col justify-end overflow-hidden rounded-lg border border-zinc-200 h-72 sm:h-80 md:h-[380px] lg:h-full lg:min-h-[460px] lg:col-span-3"
+              className="group relative flex flex-col justify-end overflow-hidden rounded-lg border border-zinc-200 h-72 sm:h-80 md:h-[380px] lg:h-full lg:min-h-[460px] w-full"
             >
 
               {featuredImage && (
@@ -148,12 +148,11 @@ export default function Categories() {
                 <Reveal
                   key={category.slug}
                   delay={Math.min(0.08 + index * 0.06, 0.3)}
+                  className={isLastOdd ? "col-span-2" : ""}
                 >
                   <Link
                     href={`/products/${category.slug}`}
-                    className={`group relative flex flex-col justify-end overflow-hidden rounded-lg border border-zinc-200 h-36 sm:h-40 md:h-44 ${
-                      isLastOdd ? "col-span-2" : ""
-                    }`}
+                    className="group relative flex flex-col justify-end overflow-hidden rounded-lg border border-zinc-200 h-36 sm:h-40 md:h-44 w-full"
                   >
 
                     {imageSrc && (
