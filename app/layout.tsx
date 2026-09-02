@@ -14,6 +14,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://yashtraders.in"),
+  verification: {
+  google: "-LYoVJHZb7ZzJlIuLC8UWKxe81BqIr_tZ_CnzbE4VqE",
+},
 
   title: {
     default:
